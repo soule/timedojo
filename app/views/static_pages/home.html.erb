@@ -2,10 +2,32 @@
 
 
 <div class="center jumbotron">
+	<% if logged_in? %>
+		<%= render 'work_sessions/timer' %>
+	<% else %>
 	<h1>Welcome to WorkTracker.</h1>
 	<h3>WorkTracker is a tool you can use to track your own productivity as you work in timed sessions.</h3>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 
+	<% end %>
+
+
+
+
 </div>
+
+<% if logged_in? %>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Recent Sessions</h3>
+		</div>
+		<div class="panel-body">
+			<ul id="sessionlist">
+				<%= render @work_sessions %>
+			</ul>
+		</div>
+	</div>
+<% end %>
+
 
 <!-- <%= image_tag "pomodoro.jpg", alt: "Pomodoro timer", class: 'center' %> !-->

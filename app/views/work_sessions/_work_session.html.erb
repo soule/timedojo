@@ -1,0 +1,4 @@
+<li>
+	<%= distance_of_time_in_words(work_session.created_at, work_session.created_at - work_session.length.seconds, include_seconds: true) %> long 
+	<%= time_ago_in_words(work_session.created_at, :vague => true) %> ago
+</li>

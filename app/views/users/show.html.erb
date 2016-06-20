@@ -1,1 +1,13 @@
-<%= @user.name %>, <%= @user.email %>
+<div class="center jumbotron">
+<h1> <%= @user.name %></h1>
+<h4>User Profile and Statistics</h4> <br><br>
+
+Daily productivity in sessions per day:<br><br>
+<%= line_chart @user.work_sessions.group_by_day, label: "Sessions" %>
+
+<br><br>
+
+Average session length: <%= distance_of_time_in_words(@user.work_sessions.average(:length)) %> <br> <br>
+
+
+</div>
