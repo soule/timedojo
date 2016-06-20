@@ -13,13 +13,18 @@ gem 'bootstrap-sass', '3.2.0.0'
 gem 'will_paginate'
 gem 'dotiw'
 gem 'chartkick'
-gem 'dateslices'
-#gem 'groupdate'
+#gem 'dateslices'
 
-gem 'sqlite3', '1.3.9'
+group :development, :test do
+  gem 'sqlite3', '1.3.9'
   gem 'byebug', '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring', '1.1.3'
-#group :development, :test do
-  
-#end
+  gem 'dateslices'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
+	gem 'groupdate'
+end
