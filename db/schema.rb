@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602145919) do
+ActiveRecord::Schema.define(version: 20161015154038) do
+
+  create_table "friendships", force: :cascade do |t|
+    t.string   "friendable_type"
+    t.integer  "friendable_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blocker_id"
+    t.integer  "status"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -28,9 +37,8 @@ ActiveRecord::Schema.define(version: 20160602145919) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["user_id", "created_at"], name: "index_work_sessions_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_work_sessions_on_user_id"
   end
-
-  add_index "work_sessions", ["user_id", "created_at"], name: "index_work_sessions_on_user_id_and_created_at"
-  add_index "work_sessions", ["user_id"], name: "index_work_sessions_on_user_id"
 
 end

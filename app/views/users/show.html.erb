@@ -2,6 +2,8 @@
 <h1> <%= @user.name %></h1>
 <h4>User Profile and Statistics</h4> <br><br>
 
+<% if @user.work_sessions.count > 0 %>
+
 Daily productivity in sessions per day:<br><br>
 <%= line_chart @user.work_sessions.group_by_day, label: "Sessions" %>
 
@@ -9,5 +11,9 @@ Daily productivity in sessions per day:<br><br>
 
 Average session length: <%= distance_of_time_in_words(@user.work_sessions.average(:length)) %> <br> <br>
 
+
+<% else %>
+User has done no sessions! 
+<% end %>
 
 </div>

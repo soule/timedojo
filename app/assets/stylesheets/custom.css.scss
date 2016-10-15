@@ -64,9 +64,9 @@ p {
 /*forms*/
 
 input, textarea, select, .uneditable-input {
-	border: 1px solid #bbb;
-	width: 100%;
-	margin-bottom: 15px;
+	/*border: 1px solid #bbb;*/
+	/*width: 100%;*/
+	/*margin-bottom: 15px;*/
 	/*@include box-sizing;*/
 
 }
@@ -91,6 +91,11 @@ input {
 }
 
 /* timer */
-#timer {
-	margin-bottom: 25px;
+.timer {
+	margin-bottom: 200px;
+	font-size: 250%;
+}
+
+.timer:hover {
+	background: #fffbe1;
 }

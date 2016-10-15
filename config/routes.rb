@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  get 'users/new'
-
   root 'static_pages#home'
 
   get 'help' => 'static_pages#help'
@@ -20,6 +18,8 @@ Rails.application.routes.draw do
   resources :users
 
   resources :work_sessions, only: [:create, :destroy]
+
+  post 'users/:id/request_friend' => 'users#request_friend'
 
   
 
