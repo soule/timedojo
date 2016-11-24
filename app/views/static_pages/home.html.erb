@@ -1,23 +1,10 @@
 <% provide(:title, "Home") %>
 
-
-<div class="center jumbotron">
-	<% if logged_in? %>
-		<%= render 'work_sessions/timer' %>
-	<% else %>
-	<h1>Welcome to WorkTracker.</h1>
-	<h3>WorkTracker is a tool you can use to track your own productivity as you work in timed sessions.</h3>
-	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-
-	<% end %>
-
-
-
-
-</div>
-
-<% if logged_in? %>
-	<div class="panel panel-default">
+<div class="row">
+    <div class="col-md-3">
+    	<% if user_signed_in? %>
+    		<%= current_user.name %>
+    		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Recent Sessions</h3>
 		</div>
@@ -27,7 +14,63 @@
 			</ul>
 		</div>
 	</div>
-<% end %>
+    	<% end %>
 
+</div>
+<div class="col-md-6">
+
+<div class="center jumbotron">
+	<% if user_signed_in? %>
+		<%= render 'work_sessions/timer' %>
+	<% else %>
+	<h1>Welcome to WorkTracker.</h1>
+	<h3>WorkTracker is a tool you can use to track your own productivity as you work in timed sessions.</h3>
+	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+
+	<% end %>
+
+
+
+</div>
+
+
+
+<% if user_signed_in? %>
+
+    
+      
+  
+<% end %>
+</div>
+
+  <div class="col-md-3">
+    	<% if user_signed_in? %>
+    		
+    	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Pending Friends</h3>
+		</div>
+		<div class="panel-body">
+			<ul id="sessionlist">
+				<%= render current_user.pending_friends %>
+			</ul>
+		</div>
+	</div>
+  	
+  	 <div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Requests Sent</h3>
+		</div>
+		<div class="panel-body">
+			<ul id="sessionlist">
+				<%= render @current_user.requested_friends %>
+			</ul>
+		</div>
+	</div>
+
+
+	<% end %>
+  </div>
 
 <!-- <%= image_tag "pomodoro.jpg", alt: "Pomodoro timer", class: 'center' %> !-->
+</div>

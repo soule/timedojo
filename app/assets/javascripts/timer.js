@@ -1,7 +1,7 @@
 var paused = true;
 var onBreak = false;
 var time = 0; // time elapsed
-var pomodoroLength = 1500; // pomodoro length def 1500
+var pomodoroLength = 5; // pomodoro length def 1500
 var minutesLength  = 25; // default minutes length
 var secondsLength = 0; // default seconds length
 var total = pomodoroLength; // total time
@@ -21,8 +21,8 @@ $("#seconds").editable("click", function(e){
   $("#seconds").text = pad(e.value);
 });
 
-pomodoroLength = minutesLength * 60 + secondsLength;
-resetTimer(pomodoroLength);
+//pomodoroLength = minutesLength * 60 + secondsLength;
+//resetTimer(pomodoroLength);
 
 $("#start").unbind().submit();
 $("#pause").unbind().submit();
@@ -33,7 +33,7 @@ $("#reset").unbind().submit();
 
     $("#pause").click(function() {
       paused = true;
-    });
+    });e 
 
     $("#reset").click(function() {
       resetTimer(total);

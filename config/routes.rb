@@ -1,25 +1,25 @@
 
 Rails.application.routes.draw do
-  get 'sessions/new'
+resources :users do
+    post 'request_friend' => 'users#request_friend'
+  end
+  
+   devise_for :users,
+              controllers: { registrations: 'registrations/registrations' }
 
-  get 'users/new'
+
+
+  get 'sessions/new'
 
   root 'static_pages#home'
 
   get 'help' => 'static_pages#help'
 
-  get 'signup' => 'users#new'
-
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
-
-  
-  resources :users
-
+ 
   resources :work_sessions, only: [:create, :destroy]
 
-  post 'users/:id/request_friend' => 'users#request_friend'
+  
+
 
   
 

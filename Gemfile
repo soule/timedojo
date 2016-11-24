@@ -15,6 +15,9 @@ gem 'dotiw'
 gem 'chartkick'
 gem 'has_friendship'
 #gem 'dateslices'
+#gem "mail_view", "~> 2.0.4"
+
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'

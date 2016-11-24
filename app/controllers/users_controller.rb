@@ -20,6 +20,14 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   end
 
+  def request_friend
+    if user_signed_in?
+      current_user.friend_request(User.find(params[:id]))
+      redirect_to users_path
+    end
+  end
+
+
   private
   	def user_params
   		params.require(:user).permit(:name, :email, 
