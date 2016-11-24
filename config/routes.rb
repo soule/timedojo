@@ -1,14 +1,14 @@
 
 Rails.application.routes.draw do
-resources :users do
-    post 'request_friend' => 'users#request_friend'
-  end
+  
   
    devise_for :users,
               controllers: { registrations: 'registrations/registrations' }
 
 
-
+  resources :users do
+    resources :friendships
+  end
   get 'sessions/new'
 
   root 'static_pages#home'
