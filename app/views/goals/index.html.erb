@@ -1,0 +1,10 @@
+<% provide(:title, 'All goals') %>
+<h1>All goals</h1>
+
+<ul class="users">
+  <% @goals.each do |goal| %>
+    <li>
+      <b><%= goal.name %></b>
+    </li>
+  <% end %>
+</ul>

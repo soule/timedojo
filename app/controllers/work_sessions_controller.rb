@@ -1,9 +1,8 @@
 class WorkSessionsController < ApplicationController
 	#before action stuff goes here
 
+	
 	def create 
-
-
 		@work_session = current_user.work_sessions.build(work_session_params)
 		if @work_session.save
 			@work_sessions = current_user.work_sessions.limit(5)

@@ -1,4 +1,4 @@
-
+<%= form_for @work_session do |f| %>
 <span  id="minutes" class="timer">25</span><span class="timer">:</span><span id="seconds" class="timer">00</span>
 
 <!-- this should prolly preload the users last used time period.. -->
@@ -15,6 +15,9 @@
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Goal <span class="caret"></span>
   </button>
+
+
+  <%= f.select :goal, current_user.goals, class: "form-control" %>
   <ul class="dropdown-menu">
     <li><a href="#">Action</a></li>
     <li><a href="#">Another action</a></li>
@@ -29,4 +32,5 @@
 <br /> <br />
 
 
-<!-- <p id="success"><%= flash[:success] %></h3> !-->
+
+<% end %>

@@ -1,0 +1,24 @@
+<% provide(:title, 'New Goal') %>
+
+<h1>Create a new goal</h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(@goal) do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name, class: 'form-control' %>
+
+			<%= f.label :description %>
+			<%= f.text_area :description, class: 'form-control' %>
+
+			<%= f.label :target %>
+			<%= f.text_field :target, class: 'form-control' %>
+
+			<%= f.label :interval %>
+			<%= f.select :interval, Goal.intervals.keys, class: 'form-control' %>
+
+			<%= f.submit "Create account", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
+
