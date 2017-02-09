@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=5.0.0.1', '< 5.1'
+gem 'rails'
 gem 'bcrypt'
 gem 'sass-rails'
 gem 'uglifier'
@@ -8,7 +8,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
-gem 'sdoc', group: :doc
+#gem 'sdoc', group: :doc
 gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'dotiw'

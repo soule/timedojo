@@ -1,0 +1,33 @@
+language: ruby
+
+sudo: false
+
+cache:
+  - apt
+  - bundler
+
+rvm:
+  - 2.2.5
+  - 2.3.1
+  - ruby-head
+
+matrix:
+  exclude:
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile-rails.4.1.x
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile-rails.4.2.x
+
+gemfile:
+  - gemfiles/Gemfile-rails.4.1.x
+  - gemfiles/Gemfile-rails.4.2.x
+  - gemfiles/Gemfile-rails.5.0.0
+
+addons:
+  apt:
+    packages:
+      - graphviz
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head

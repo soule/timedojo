@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   
   
+  resources :friend_requests
    devise_for :users,
               controllers: { registrations: 'registrations/registrations' }
 
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get 'help' => 'static_pages#help'
+
+  resources :goals
 
  
   resources :work_sessions, only: [:create, :destroy]
