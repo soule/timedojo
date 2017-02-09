@@ -11,21 +11,11 @@
 <button id="reset" class="btn btn-inverse">Reset</button>
 
 <br> <br>
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Goal <span class="caret"></span>
-  </button>
 
 
-  <%= f.select :goal, current_user.goals, class: "form-control" %>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
+
+  <%= f.select :goal_id, current_user.goals.collect { |g| [g.name, g.id]},{ prompt: "Goal" }, { :class => 'form-control'} %>
+
 
 <input type="text" class="form-control" id="exampleInputPassword1" placeholder="What are you working on?">
 

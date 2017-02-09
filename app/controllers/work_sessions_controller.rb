@@ -1,7 +1,7 @@
 class WorkSessionsController < ApplicationController
 	#before action stuff goes here
 
-	
+
 	def create 
 		@work_session = current_user.work_sessions.build(work_session_params)
 		if @work_session.save
@@ -17,7 +17,7 @@ class WorkSessionsController < ApplicationController
 
 	private
 		def work_session_params
-			params.require(:work_session).permit(:length, :description, :timeStarted)
+			params.require(:work_session).permit(:length, :description, :timeStarted, :goal_id)
 		end
 
 end
