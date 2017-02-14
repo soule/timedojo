@@ -34,9 +34,15 @@ class WorkSessionsController < ApplicationController
 		redirect_to root_url
 	end
 
+	def update
+		@work_session = WorkSession.find(params[:id])
+		@work_session.update_attributes(work_session_params)
+		redirect_to root_url
+	end
+
 	private
 		def work_session_params
-			params.require(:work_session).permit(:length, :description, :timeStarted, :goal_id)
+			params.require(:work_session).permit(:length, :description, :timeStarted, :goal_id, :state)
 		end
 
 end

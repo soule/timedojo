@@ -10,7 +10,7 @@
 				</div>
 				<div class="panel-body">
 					<ul id="sessionlist">
-						<%= render current_user.work_sessions.limit(5) %>
+						<%= render current_user.work_sessions.where(state: :complete).limit(5) %>
 					</ul>
 				</div>
 		</div>

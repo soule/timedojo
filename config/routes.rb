@@ -20,9 +20,7 @@ Rails.application.routes.draw do
   resources :goals
 
  
-  resources :work_sessions, only: [:create, :destroy]
-
-  
+  resources :work_sessions, only: [:create, :destroy, :update]
 
 
   

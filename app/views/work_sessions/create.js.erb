@@ -1,7 +1,7 @@
 var paused = true;
 var onBreak = false;
 var time = 0; // time elapsed
-var pomodoroLength = 20; // pomodoro length def 1500
+var pomodoroLength = 10; // pomodoro length def 1500
 var minutesLength  = 25; // default minutes length
 var secondsLength = 0; // default seconds length
 var total = pomodoroLength; // total time
@@ -14,13 +14,11 @@ $(function() {
 	
 	$("#new_work_session").hide();
 	$("#timer_controls").show();
-	$("#deleteform").html('<%= link_to "Delete", @work_session, method: :delete %>');
+	$("#deleteform").html('<%= link_to "Delete", @work_session, method: :delete, class: "btn btn-danger" %>');
 
 	startTimer();
 
-	$("#status").html("<%= @work_session.inspect %> suck!");
-
-
+	//$("#status").html("<%= @work_session.inspect %> suck!");
 
 	$("#minutes").editable("click", function(e){
 	  minutesLength = e.value;
@@ -38,11 +36,6 @@ $(function() {
 	$("#pause").unbind().submit();
 	$("#reset").unbind().submit();
 
-
-    // $("#start").click(function() {
-    //   //startTimer();
-    // });
-
     $("#pause").click(function() {
       if (paused) { // resuming
       	startTimer();
@@ -52,31 +45,24 @@ $(function() {
       	$("#pause").html("Resume");
       }
     });
-
-    $("#reset").click(function() {
-      resetTimer(total);
-      //TODO: Do more stuff!
-    });
 });
 
+function showSaveForm() {
+	$("#timer_controls").hide();
 
-
-function submitSession() {
-  
-  // $.ajax({
-  //   type: "POST",
-  //   //dataType: "script",
-  //   url: "/work_sessions",
-  //   data: { work_session: { length: pomodoroLength } },
-
-  // });
+	$("#completeform").html('\
+		<%= form_for @work_session, method: :patch do |f| %>\
+		<%= f.hidden_field :state, value: :complete %>\
+		<button id="complete" class="btn btn-success">Complete</button>\
+		<% end %>');
 }
+
 
 function tick() {  // make sure there aren't any race conditions here or w/ever
   if (!paused) {
     time++;
     if (time == total) {
-      alert("Done!");
+      //alert("Done!");
       paused = true;
       pomodoros++;
       onBreak = !onBreak;
@@ -84,11 +70,11 @@ function tick() {  // make sure there aren't any race conditions here or w/ever
         if (pomodoros%4 == 0) {
           submitSession();
           resetTimer(longBreak);
-          alert("Take a long break!");
+          //alert("Take a long break!");
         } else {
-          submitSession();
+          showSaveForm();
          resetTimer(shortBreak);
-          alert("Take a short break!");
+          //alert("Take a short break!");
         }
         startTimer();
       } else {
