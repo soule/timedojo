@@ -5,76 +5,57 @@
     	<% if user_signed_in? %>
     		<%= current_user.name %>
     		<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Recent Sessions</h3>
+				<div class="panel-heading">
+					<h3 class="panel-title">Recent Sessions</h3>
+				</div>
+				<div class="panel-body">
+					<ul id="sessionlist">
+						<%= render current_user.work_sessions.limit(5) %>
+					</ul>
+				</div>
 		</div>
-		<div class="panel-body">
-			<ul id="sessionlist">
-				<%= render @work_sessions %>
-			</ul>
+  		<% end %>
+	</div>
+
+	<div class="col-md-6">
+		<div class="center jumbotron">
+			<% if user_signed_in? %>
+				<%= render 'work_sessions/timer' %>
+			<% else %>
+				<h1>Welcome to TimeDojo.</h1>
+				<h3>TimeDojo is a tool you can use to track your productivity as you work in timed sessions.</h3>
+				<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+			<% end %>
 		</div>
 	</div>
-    	<% end %>
 
-</div>
-<div class="col-md-6">
-
-<div class="center jumbotron">
-	<% if user_signed_in? %>
-		<%= render 'work_sessions/timer' %>
-	<% else %>
-	<h1>Welcome to WorkTracker.</h1>
-	<h3>WorkTracker is a tool you can use to track your own productivity as you work in timed sessions.</h3>
-	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
-
-	<% end %>
-
-
-
-</div>
-
-
-
-<% if user_signed_in? %>
-
-    
-      
-  
-<% end %>
-</div>
-
-  <div class="col-md-3">
+	<div class="col-md-3">
     	<% if user_signed_in? %>
-    		
-    	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Following</h3>
-		</div>
-		<div class="panel-body">
-			<ul id="sessionlist">
-				<% for friendship in current_user.friendships %>
-					<li> <%= friendship.friend.name %> </li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
+    		<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Following</h3>
+				</div>
+				<div class="panel-body">
+					<ul id="sessionlist">
+						<% for friendship in current_user.friendships %>
+							<li> <%= friendship.friend.name %> </li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
   	
-  	 <div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Followers</h3>
-		</div>
-		<div class="panel-body">
-			<ul id="sessionlist">
-				<% for friendship in current_user.inverse_friendships %>
-					<li> <%= friendship.user.name %> </li>
-				<% end %>
-			</ul>
-		</div>
+		  	 <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Followers</h3>
+				</div>
+				<div class="panel-body">
+					<ul id="sessionlist">
+						<% for friendship in current_user.inverse_friendships %>
+							<li> <%= friendship.user.name %> </li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		<% end %>
 	</div>
-
-
-	<% end %>
-  </div>
-
-<!-- <%= image_tag "pomodoro.jpg", alt: "Pomodoro timer", class: 'center' %> !-->
 </div>

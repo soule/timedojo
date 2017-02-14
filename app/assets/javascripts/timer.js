@@ -24,16 +24,16 @@ $("#seconds").editable("click", function(e){
 //pomodoroLength = minutesLength * 60 + secondsLength;
 //resetTimer(pomodoroLength);
 
-$("#start").unbind().submit();
-$("#pause").unbind().submit();
-$("#reset").unbind().submit();
+//$("#start").unbind().submit();
+//$("#pause").unbind().submit();
+//$("#reset").unbind().submit();
     $("#start").click(function() {
       startTimer();
     });
 
     $("#pause").click(function() {
       paused = true;
-    });e 
+    });
 
     $("#reset").click(function() {
       resetTimer(total);
@@ -43,13 +43,14 @@ $("#reset").unbind().submit();
 
 
 function submitSession() {
-  $.ajax({
-    type: "POST",
-    //dataType: "script",
-    url: "/work_sessions",
-    data: { work_session: { length: pomodoroLength } },
+  
+  // $.ajax({
+  //   type: "POST",
+  //   //dataType: "script",
+  //   url: "/work_sessions",
+  //   data: { work_session: { length: pomodoroLength } },
 
-  });
+  // });
 }
 
 function tick() {  // make sure there aren't any race conditions here or w/ever
@@ -62,6 +63,7 @@ function tick() {  // make sure there aren't any race conditions here or w/ever
       onBreak = !onBreak;
       if (onBreak) {
         if (pomodoros%4 == 0) {
+          submitSession();
           resetTimer(longBreak);
           alert("Take a long break!");
         } else {

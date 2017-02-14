@@ -1,5 +1,5 @@
 <%= form_for @work_session do |f| %>
-<span  id="minutes" class="timer">25</span><span class="timer">:</span><span id="seconds" class="timer">00</span>
+<span id="minutes" class="timer">25</span><span class="timer">:</span><span id="seconds" class="timer">00</span>
 
 <!-- this should prolly preload the users last used time period.. -->
 
@@ -12,12 +12,12 @@
 
 <br> <br>
 
-
+  <%= f.hidden_field :length, :value => "1500" %>
 
   <%= f.select :goal_id, current_user.goals.collect { |g| [g.name, g.id]},{ prompt: "Goal" }, { :class => 'form-control'} %>
 
 
-<input type="text" class="form-control" id="exampleInputPassword1" placeholder="What are you working on?">
+  <%= f.text_field :description, placeholder: "What are you working on?", class: 'form-control' %>
 
 <br /> <br />
 
