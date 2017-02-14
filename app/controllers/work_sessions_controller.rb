@@ -7,12 +7,31 @@ class WorkSessionsController < ApplicationController
 		puts work_session_params.inspect
 		if @work_session.save
 			@work_sessions = current_user.work_sessions.limit(5)
-			redirect_to root_url
+			respond_to do |format| 
+				format.html { redirect_to root_url }
+
+				format.js
+			end
 			puts "Win!"
 		else
 			puts "fail!"
 			redirect_to root_url
 		end
+	end
+
+	def destroy
+		@work_session = WorkSession.find(params[:id])
+
+		if @work_session.present?
+			@work_session.destroy
+		end
+		
+			# respond_to do |format| 
+			# 	format.html { redirect_to root_url }
+
+			# 	format.js
+			# end
+		redirect_to root_url
 	end
 
 	private
