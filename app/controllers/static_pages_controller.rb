@@ -9,10 +9,10 @@ class StaticPagesController < ApplicationController
   		#puts @start_date
   		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state == 2', 30.days.ago)
 
-
       competitors = current_user.friendships.map(&:friend_id) << current_user.id
 
-      @competitors = User.where(id: competitors).order(:work_sessions)
+      @competitors = User.where(id: competitors)
+      #@users = User.where(id: array_of_ids).sort_by &:sessions.count
 
       #@competitors = @competitors.sort!  { |c| c.work_sessions.count }
 
