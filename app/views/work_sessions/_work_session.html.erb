@@ -1,4 +1,4 @@
-<li>
-	<%= distance_of_time_in_words(work_session.created_at, work_session.created_at - work_session.length.seconds, include_seconds: true) %> long 
-	<%= time_ago_in_words(work_session.created_at, :vague => true) %> ago
+<li class="work_session"><h4> <%= distance_of_time_in_words(work_session.created_at, work_session.created_at -  work_session.length.seconds, include_seconds: true).singularize %>  session<small> <%= time_ago_in_words(work_session.created_at, :vague => true)%> ago</small> </h4>
+
+<div id="work_session_description"> <i><%= work_session.description %></i></div>
 </li>

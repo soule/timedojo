@@ -49,8 +49,7 @@ p {
 	float: left;
 	margin-right: 10px;
 	font-size: 1.7em;
-	color: #fff;
-	text-transform: uppercase;
+	color: #c0c0c0;
 	letter-spacing: -1px;
 	padding-top: 9px;
 	font-weight: bold;
@@ -97,5 +96,17 @@ input {
 }
 
 .timer:hover {
-	background: #fffbe1;
+	#background: #fffbe1;
+}
+
+/* activity list */
+.work_session {
+    display: block;
+    overflow: auto;
+    padding: 0px 0px 10px 10px ;
+    border-bottom: 1px solid $gray-lighter;
+}
+
+#work_session_title {
+	font-size: 230%;
 }

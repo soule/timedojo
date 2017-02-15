@@ -3,16 +3,23 @@
 <div class="row">
     <div class="col-md-3">
     	<% if user_signed_in? %>
-    		<%= current_user.name %>
+    		
     		<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Recent Sessions</h3>
+					<h3 class="panel-title">Statistics</h3>
+					<h5>Sessions in the last 30 days: </h5>
+					<%= @recent_sessions.count %>
+
+					<h5> Time Logged in the last 30 days </h5>
+					
+					<%= distance_of_time_in_words(Time.at(0), Time.at(@recent_sessions.count * 25 * 60)) %>
+					
+					<h5> Total Time Logged </h5>
+					<%= distance_of_time_in_words(Time.at(0), Time.at(@current_user.work_sessions.where('state == 2').count * 25 *60)) %>
+
+					
 				</div>
-				<div class="panel-body">
-					<ul id="sessionlist">
-						<%= render current_user.work_sessions.where(state: :complete).limit(5) %>
-					</ul>
-				</div>
+				
 		</div>
   		<% end %>
 	</div>
@@ -27,6 +34,16 @@
 				<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
 			<% end %>
 		</div>
+		<% if user_signed_in? %>
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Your Recent Sessions</h3>
+				</div>
+				<div class="panel-body">
+					<%= render current_user.work_sessions.where(state: :complete).limit(5) %>
+				</div>
+			</div>
+		<% end %>
 	</div>
 
 	<div class="col-md-3">

@@ -4,6 +4,12 @@ class StaticPagesController < ApplicationController
   	if user_signed_in?
   		@work_sessions = current_user.work_sessions.limit(5)
   		@work_session = current_user.work_sessions.build
+
+  		#@start_date = (current_user.created_at < 30.days.ago) ? current_user.created_at : 30.days.ago
+  		#puts @start_date
+  		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state == 2', 30.days.ago)
+
+
   	end
   end
 
