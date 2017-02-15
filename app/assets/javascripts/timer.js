@@ -3,4 +3,4 @@ $(function() {
   $("#reset").unbind().submit();
 
   $("#timer_controls").show();
-}
+});

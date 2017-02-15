@@ -18,12 +18,12 @@ gem 'chartkick'
 #gem 'dateslices'
 #gem "mail_view", "~> 2.0.4"
 
-#gem 'capistrano', '~> 3.7', '>= 3.7.1'
-# gem 'capistrano-rails', '~> 1.2'
-# gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
 
 # Add this if you're using rbenv
-# gem 'capistrano-rbenv', '~> 2.1'
+gem 'capistrano-rbenv'
 
 gem 'devise'
 
