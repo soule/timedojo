@@ -55,7 +55,7 @@
 				<div class="panel-body">
 					<ul id="sessionlist">
 						<% for friendship in current_user.friendships %>
-							<li> <%= friendship.friend.name %> </li>
+							<li> <%= link_to friendship.friend.name, friendship.friend %> </li>
 						<% end %>
 					</ul>
 				</div>
@@ -68,7 +68,33 @@
 				<div class="panel-body">
 					<ul id="sessionlist">
 						<% for friendship in current_user.inverse_friendships %>
-							<li> <%= friendship.user.name %> </li>
+							<li> <%= link_to friendship.user.name, friendship.user %> </li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+
+			 <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Weekly Leaderboard</h3>
+					<!-- This is between you and those you follow -->
+				</div>
+				<div class="panel-body">
+					<table id="leaderboard" style = "width: 100%">
+					<thead>
+					<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Sessions</th>
+					</tr>
+					</thead>
+					<tbody>
+						<% for user in @competitors %>
+							<tr>
+								<td> 1 </td>
+								<td> <%= link_to user.name, user %> </td>
+								<td> <%= user.work_sessions.count %> </td>
+							</tr>
 						<% end %>
 					</ul>
 				</div>
