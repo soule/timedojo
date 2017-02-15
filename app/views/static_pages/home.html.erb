@@ -76,7 +76,7 @@
 
 			 <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Weekly Leaderboard</h3>
+					<h3 class="panel-title">Leaderboard</h3>
 					<!-- This is between you and those you follow -->
 				</div>
 				<div class="panel-body">
@@ -89,11 +89,11 @@
 					</tr>
 					</thead>
 					<tbody>
-						<% for user in @competitors %>
+						<% @competitors.each_with_index do |user, rank| %>
 							<tr>
-								<td> 1 </td>
+								<td> <%= rank+1 %> </td>
 								<td> <%= link_to user.name, user %> </td>
-								<td> <%= user.work_sessions.count %> </td>
+								<td> <%= user.work_sessions_count %> </td>
 							</tr>
 						<% end %>
 					</ul>

@@ -11,8 +11,8 @@ class StaticPagesController < ApplicationController
 
       competitors = current_user.friendships.map(&:friend_id) << current_user.id
 
-      @competitors = User.where(id: competitors)
-      #@users = User.where(id: array_of_ids).sort_by &:sessions.count
+      #@competitors = User.where(id: competitors)
+      @competitors = User.where(id: competitors).order('work_sessions_count desc')
 
       #@competitors = @competitors.sort!  { |c| c.work_sessions.count }
 
