@@ -15,7 +15,7 @@
 					<%= distance_of_time_in_words(Time.at(0), Time.at(@recent_sessions.count * 25 * 60)) %>
 					
 					<h5> Total Time Logged </h5>
-					<%= distance_of_time_in_words(Time.at(0), Time.at(@current_user.work_sessions.where('state == 2').count * 25 *60)) %>
+					<%= distance_of_time_in_words(Time.at(0), Time.at(@current_user.work_sessions.where('state = 2').count * 25 *60)) %>
 
 					
 				</div>
