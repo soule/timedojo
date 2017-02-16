@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
 
   		#@start_date = (current_user.created_at < 30.days.ago) ? current_user.created_at : 30.days.ago
   		#puts @start_date
-  		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state == 2', 30.days.ago)
+  		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state = 2', 30.days.ago)
 
       competitors = current_user.friendships.map(&:friend_id) << current_user.id
 
