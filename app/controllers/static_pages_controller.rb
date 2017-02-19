@@ -7,12 +7,13 @@ class StaticPagesController < ApplicationController
 
   		#@start_date = (current_user.created_at < 30.days.ago) ? current_user.created_at : 30.days.ago
   		#puts @start_date
-  		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state = 2', 30.days.ago)
+  		@recent_sessions = current_user.work_sessions.where('updated_at > ? AND state == 2', 30.days.ago)
 
       competitors = current_user.friendships.map(&:friend_id) << current_user.id
 
       #@competitors = User.where(id: competitors)
-      @competitors = User.where(id: competitors).order('work_sessions_count desc')
+      #@competitors = User.where(id: competitors).order('work_sessions_count desc')
+      @competitors = User.where(id: competitors).sort_by { |guy| guy.work_sessions.where('updated_at > ? AND state = 2', 30.days.ago).count * -1 }
 
       #@competitors = @competitors.sort!  { |c| c.work_sessions.count }
 

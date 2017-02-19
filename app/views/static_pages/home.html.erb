@@ -41,6 +41,7 @@
 				</div>
 				<div class="panel-body">
 					<%= render current_user.work_sessions.where(state: :complete).limit(5) %>
+					
 				</div>
 			</div>
 		<% end %>
