@@ -1,28 +1,36 @@
 class FriendshipsController < ApplicationController
-	def create
-		@friendship = current_user.friendships.build(:friend_id => params[:user_id])
-		if @friendship.save
-			flash[:notice] = "Submitted friend request!"
-			redirect_to root_url
-		else
-			flash[:error] = "Couldn't add friend!"
-			redirect_to root_url
-		end
-	end
+	 def create
+      @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+      if @friendship.save
+        flash[:notice] = "Friend requested."
+        redirect_to :back
+      else
+        flash[:error] = "Unable to request friendship."
+        redirect_to :back
+      end
+    end
 
-	def destroy
-		@friendship = current_user.friendships.find(params[:id])
-		@friendship.destroy
-		flash[:notice] = "Removed friendship"
-		redirect_to root_url
-	end
+    def update
+    @friendship = Friendship.find_by(id: params[:id])
+    @friendship.update(accepted: true)
+      if @friendship.save
+        redirect_to root_url, notice: "Successfully confirmed friend!"
+      else
+        redirect_to root_url, notice: "Sorry! Could not confirm friend!"
+      end
+    end
 
-	def confirm
-		@friendship = current_user.inverse_friendships.find(params[:id])
-		@friendship.confirmed = true
-		@friendship.save
-		reciprocal_friendship = Friendship.find_or_create_by(user_id: current_user.id, friend_id: params[:id])
-		reciprocal_friendship.confirmed = true
-	end
+    def destroy
+      @friendship = Friendship.find_by(id: params[:id])
+      if @friendship.accepted?
+      	flash[:notice] = "Removed " + @friendship.friend.name + " as a friend."
+      else
+      	flash[:notice] = "Declined friend request."
+      end
+
+      @friendship.destroy
+      
+      redirect_to :back
+    end
 
 end

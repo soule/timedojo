@@ -7,11 +7,10 @@ Rails.application.routes.draw do
               controllers: { registrations: 'registrations/registrations' }
 
 
-  resources :users do
-    resources :friendships
+  resources :users
 
-  end
-  
+  resources :friendships, only: [:create, :update, :destroy]
+
   post '/friendships/:id/confirm', to: 'friendships#confirm'
 
   get 'sessions/new'
