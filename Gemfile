@@ -14,7 +14,7 @@ gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'dotiw'
 gem 'chartkick'
-#gem 'has_friendship'
+gem 'has_friendship'
 #gem 'dateslices'
 #gem "mail_view", "~> 2.0.4"
 
