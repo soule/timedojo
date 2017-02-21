@@ -9,8 +9,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :friendships
+
   end
   
+  post '/friendships/:id/confirm', to: 'friendships#confirm'
+
   get 'sessions/new'
 
   root 'static_pages#home'

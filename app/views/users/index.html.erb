@@ -9,3 +9,11 @@
     </li>
   <% end %>
 </ul>
+
+<h1> Friend Requests </h1>
+<% @requests.each do |friendship| %>
+    <li>
+      <%= link_to friendship.user.name, friendship.user %>
+      <%= link_to "confirm friend",  {controller: "friendships", action: "confirm", id: friendship.id}, :method => :post %> 
+    </li>
+  <% end %>

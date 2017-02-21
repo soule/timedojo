@@ -40,7 +40,8 @@
 					<h3 class="panel-title">Your Recent Sessions</h3>
 				</div>
 				<div class="panel-body">
-					<%= render current_user.work_sessions.where(state: :complete).limit(5) %>
+				<%= render @work_sessions %>
+					<%= will_paginate @work_sessions %>
 					
 				</div>
 			</div>
@@ -55,8 +56,8 @@
 				</div>
 				<div class="panel-body">
 					<ul id="sessionlist">
-						<% for friendship in current_user.friendships %>
-							<li> <%= link_to friendship.friend.name, friendship.friend %> </li>
+						<% for friend in current_user.friends %>
+							<li> <%= link_to friend.name, friend %> </li>
 						<% end %>
 					</ul>
 				</div>

@@ -16,4 +16,13 @@ class FriendshipsController < ApplicationController
 		flash[:notice] = "Removed friendship"
 		redirect_to root_url
 	end
+
+	def confirm
+		@friendship = current_user.inverse_friendships.find(params[:id])
+		@friendship.confirmed = true
+		@friendship.save
+		reciprocal_friendship = Friendship.find_or_create_by(user_id: current_user.id, friend_id: params[:id])
+		reciprocal_friendship.confirmed = true
+	end
+
 end

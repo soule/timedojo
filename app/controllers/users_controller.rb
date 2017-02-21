@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @requests = Friendship.where({ friend_id: current_user.id, confirmed: false})
   end
 
   def show

@@ -27,6 +27,8 @@ gem 'capistrano-rbenv'
 
 gem 'devise'
 
+
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
