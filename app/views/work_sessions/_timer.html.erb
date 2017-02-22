@@ -1,4 +1,4 @@
-<span id="minutes" class="timer">25</span><span class="timer">:</span><span id="seconds" class="timer">00</span>
+<div class="timer"> <span id="minutes">25</span><span>:</span><span id="seconds">00</span> </div>
 
 <!-- this should prolly preload the users last used time period.. -->
 <%= form_for @work_session, :remote => true do |f| %>
@@ -9,20 +9,20 @@
   <% f.select :goal_id, current_user.goals.collect { |g| [g.name, g.id]},{ prompt: "Goal" }, { :class => 'form-control'} %>
   <!-- ^^^ that is hidden! -->
 
-<br>
   <%= f.text_field :description, placeholder: "What are you working on?", class: 'form-control' %>
 
 
 
-<br />
 
-<button id="start" class="btn btn-success">Start Work Session</button>
+
+
+<button id="start" class="btn btn-success timer-control">Start Work Session</button>
 
 
 <% end %>
 
 <div id="timer_controls" style="display: none">
-	<button id="pause" class="btn btn-inverse">Pause</button>
+	<button id="pause" class="btn btn-inverse timer-control">Pause</button>
 
 </div>
 

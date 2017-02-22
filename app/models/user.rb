@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :active_friends, -> { where(friendships: { accepted: true }) }, :through => :friendships, source: :friend
   has_many :received_friends, -> {where(friendships: {accepted: true} ) }, :through => :received_friendships, source: :user
   has_many :pending_friends, -> { where(friendships: { accepted: false}) }, through: :friendships, source: :friend
-  #has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
+  has_many :requested_friends, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
 
 
   # Include default devise modules. Others available are:

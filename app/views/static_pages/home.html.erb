@@ -1,82 +1,73 @@
 <% provide(:title, "Home") %>
 
-<div class="row">
-    <div class="col-md-3">
-    	<% if user_signed_in? %>
-    		
-    		<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Statistics</h3>
-					<h5>Sessions in the last 30 days: </h5>
-					<%= @recent_sessions.count %>
+<% if user_signed_in? %>
+	<div class="row">
+	    <div class="col-md-4">
+	    		<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Statistics</h3>
+						<h5>Sessions in the last 30 days: </h5>
+						<%= @recent_sessions.count %>
 
-					<h5> Time Logged in the last 30 days </h5>
-					
-					<%= distance_of_time_in_words(Time.at(0), Time.at(@recent_sessions.count * 25 * 60)) %>
-					
-					<h5> Total Time Logged </h5>
-					<%= distance_of_time_in_words(Time.at(0), Time.at(@current_user.work_sessions.where('state = 2').count * 25 *60)) %>
-
-					
+						<h5> Time Logged in the last 30 days </h5>
+						
+						<%= distance_of_time_in_words(Time.at(0), Time.at(@recent_sessions.count * 25 * 60)) %>
+						
+						<h5> Total Time Logged </h5>
+						<%= distance_of_time_in_words(Time.at(0), Time.at(@current_user.work_sessions.where('state = 2').count * 25 *60)) %>
+					</div>				
 				</div>
-				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Leaderboard</h3>
+						<!-- This is between you and those you follow -->
+					</div>
+					<div class="panel-body">
+						<table id="leaderboard" style = "width: 100%">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Sessions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @competitors.each_with_index do |user, rank| %>
+									<tr>
+										<td> <%= rank+1 %> </td>
+										<td> <%= link_to user.name, user %> </td>
+										<td> <%= user.work_sessions_count %> </td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
 		</div>
-  		<% end %>
+
+		<div class="col-md-8">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Your Sessions</h3>
+					</div>
+					<div class="panel-body">
+					<%= render @work_sessions %>
+						<%= will_paginate @work_sessions %>
+						
+					</div>
+				</div>
+		</div>
 	</div>
 
-	<div class="col-md-6">
-		<div class="center jumbotron">
+<% else %>
+<div class="center jumbotron">
 			<% if user_signed_in? %>
 				<%= render 'work_sessions/timer' %>
 			<% else %>
 				<h1>Welcome to TimeDojo.</h1>
-				<h3>TimeDojo is a tool you can use to track your productivity as you work in timed sessions.</h3>
+				<h3>TimeDojo is a tool you can use to track your productivity as you work in timed sessions. Add friends and compete to rack up the most work sessions!</h3>
+				<br>
 				<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
 			<% end %>
 		</div>
-		<% if user_signed_in? %>
-		<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Your Recent Sessions</h3>
-				</div>
-				<div class="panel-body">
-				<%= render @work_sessions %>
-					<%= will_paginate @work_sessions %>
-					
-				</div>
-			</div>
-		<% end %>
-	</div>
-
-	<div class="col-md-3">
-    	<% if user_signed_in? %>
-    		
-  	
-			 <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Leaderboard</h3>
-					<!-- This is between you and those you follow -->
-				</div>
-				<div class="panel-body">
-					<table id="leaderboard" style = "width: 100%">
-					<thead>
-					<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Sessions</th>
-					</tr>
-					</thead>
-					<tbody>
-						<% @competitors.each_with_index do |user, rank| %>
-							<tr>
-								<td> <%= rank+1 %> </td>
-								<td> <%= link_to user.name, user %> </td>
-								<td> <%= user.work_sessions_count %> </td>
-							</tr>
-						<% end %>
-					</ul>
-				</div>
-			</div>
-		<% end %>
-	</div>
-</div>
+<% end %>

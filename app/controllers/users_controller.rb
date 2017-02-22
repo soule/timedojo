@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  
 	def new
 		@user = User.new
 	end
@@ -13,8 +15,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
-    @requests = Friendship.where({ friend_id: current_user.id, confirmed: false})
+    @users = User.paginate(page: params[:page], per_page: 5)
+
+    @friends = current_user.friends.paginate(page: params[:page], per_page: 5)
+
+    #@received_friend_requests = Friendship.where({ friend_id: current_user.id, accepted: false}).paginate(page: params[:page], per_page: 5)
+    @sent_friend_requests = current_user.pending_friends.paginate(page: params[:page], per_page: 5)
   end
 
   def show

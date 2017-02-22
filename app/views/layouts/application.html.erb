@@ -26,7 +26,7 @@
 	
 			<ul class="nav navbar-nav navbar-right">
 				<li> <%= link_to "Home", root_path %></li>
-				<li> <%= link_to "Friends", users_path %></li>
+				<li> <%= link_to "Users", users_path %></li>
 				<li> <% link_to "Help", help_path %></li>
 				<% if user_signed_in? %>
 
@@ -36,7 +36,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><%= link_to "Profile", current_user %></li>
-							<li><%= link_to "Settings", '#' %></li>
+							<li><% link_to "Settings", '#' %></li>
 							<li class="divider"></li>
 							<li>
 								<%= link_to "Log out", destroy_user_session_path, method: "delete" %>
@@ -53,16 +53,20 @@
 </header>
 
 
-<div class="container-fluid">
+<div class="container">
 	<%= flash_messages %>
 
 
 	<%= yield %>
 
-	<%= #debug(params) if Rails.env.development?	
-	 %>
-</div>
+	
 
+	 <footer class="footer">
+		<small>
+		TimeDojo by <a href="http://souleiman.com"> Souleiman Benhida </a>
+		</small>
+	</footer>
+</div>
 
 
 </body>

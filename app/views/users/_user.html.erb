@@ -1,0 +1,17 @@
+<li>
+<span class="pull-left vcenter"><%= user.name %></span>
+
+<div class="pull-right">
+<% if user != current_user %>
+	<% if current_user.pending_friends.include?(user) %>
+		<button disabled class="btn btn-grey">Pending</button>
+	<% elsif current_user.friends.include?(user)  %>
+	              <%= button_to "Remove Friend", friendships_path(friend_id: user), class: "btn btn-default", method: :destroy %>
+	<% else %>
+	              <%= link_to "Add Friend", friendships_path(friend_id: user), class: "btn btn-primary", method: :post %>
+	<% end %>
+	
+<% end %>            
+</div>
+
+</li>

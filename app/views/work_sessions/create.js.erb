@@ -9,12 +9,13 @@ var pomodoros = 0;
 var longBreak = 15; // 20 minutes * 60s (optimize) 
 var shortBreak = 10; // 5 mins * 60s (optimize)
 
+// MAKE THESE DIFF VALUES IN PRODUCTION. LATER MAKE THEM SAVE
 $(function() {
 	//$("#sessionlist").html("<%= j render current_user.work_sessions %>");
 	
 	$("#new_work_session").hide();
 	$("#timer_controls").show();
-	$("#deleteform").html('<%= link_to "Delete", @work_session, method: :delete, class: "btn btn-danger" %>');
+	$("#deleteform").html('<%= button_to "Delete", @work_session, method: :delete, class: "btn btn-danger timer-control" %>');
 
 	startTimer();
 
@@ -53,7 +54,7 @@ function showSaveForm() {
 	$("#completeform").html('\
 		<%= form_for @work_session, method: :patch do |f| %>\
 		<%= f.hidden_field :state, value: :complete %>\
-		<button id="complete" class="btn btn-success">Complete</button>\
+		<button id="complete" class="btn btn-success timer-control">Complete</button>\
 		<% end %>');
 }
 
