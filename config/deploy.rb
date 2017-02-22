@@ -1,5 +1,5 @@
 set :application, 'worktracker'
-set :repo_url, 'git@github.com:soule/worktracker.git'
+set :repo_url, 'https://github.com/soule/worktracker.git'
 
 set :deploy_to, '/home/soule/worktracker'
 set :scm_username, "soule"
