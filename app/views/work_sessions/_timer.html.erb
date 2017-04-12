@@ -4,7 +4,7 @@
 <%= form_for @work_session, :remote => true do |f| %>
 
 
-  <%= f.hidden_field :length, :value => "1500" %>
+  <%= f.hidden_field :length, :value => "1500", :id => "sessionlength" %>
 
   <% f.select :goal_id, current_user.goals.collect { |g| [g.name, g.id]},{ prompt: "Goal" }, { :class => 'form-control'} %>
   <!-- ^^^ that is hidden! -->

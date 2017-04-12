@@ -119,6 +119,9 @@ input {
 .timer {
 	margin-bottom: 15px;
 	font-size: 250%;
+	#minutes, #seconds {
+		border-bottom: 2px dashed #9d9d9d;
+	}	
 }
 
 .timer-control{
