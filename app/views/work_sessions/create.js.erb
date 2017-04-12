@@ -19,7 +19,7 @@ $(function() {
 	//$("#sessionlist").html("<%= j render current_user.work_sessions %>");
 	
 	$("#new_work_session").hide();
-	$("#timer_controls").show();
+	$("#pausebtn").show();
 	$("#deleteform").html('<%= button_to "Delete", @work_session, method: :delete, class: "btn btn-danger timer-control" %>');
 
 
@@ -37,19 +37,23 @@ $(function() {
 	$("#pause").unbind().submit();
 	$("#reset").unbind().submit();
 
-    $("#pause").click(function() {
+  $('#minutes').unbind(); // unbinds all !
+    $('#seconds').unbind(); // unbinds all !
+
+
+    $("#pausebtn").click(function() {
       if (paused) { // resuming
       	startTimer();
-      	$("#pause").html("Pause");
+      	$("#pausebtn").html("Pause");
       } else { // now pause
       	paused = true;
-      	$("#pause").html("Resume");
+      	$("#pausebtn").html("Resume");
       }
     });
 });
 
 function showSaveForm() {
-	$("#timer_controls").hide();
+	$("#pausebtn").hide();
 
   paused = true;
 
@@ -111,6 +115,7 @@ function startTimer() {
   if (paused) {
     paused = false;
     setTimeout(tick, 1000);  
+
   }
 }
 
