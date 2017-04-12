@@ -1,21 +1,29 @@
 var paused = true;
 var onBreak = false;
 var time = 0; // time elapsed
-var pomodoroLength = 10; // pomodoro length def 1500
-var minutesLength  = 25; // default minutes length
-var secondsLength = 0; // default seconds length
-var total = pomodoroLength; // total time
 var pomodoros = 0;
-var longBreak = 15; // 20 minutes * 60s (optimize) 
-var shortBreak = 10; // 5 mins * 60s (optimize)
 
-// MAKE THESE DIFF VALUES IN PRODUCTION. LATER MAKE THEM SAVE
+<% if Rails.env.development? %>
+var pomodoroLength = 6; // pomodoro length def 1500
+var longBreak = 14; // 20 minutes * 60s (optimize) 
+var shortBreak = 4; // 5 mins * 60s (optimize)
+<% else %>
+var pomodoroLength = <%= @work_session.length %>; // pomodoro length def 1500
+var longBreak = 1200; // 20 minutes * 60s (optimize) 
+var shortBreak = 300; // 5 mins * 60s (optimize)
+<% end %>
+
+var total = pomodoroLength; // total time
+
 $(function() {
 	//$("#sessionlist").html("<%= j render current_user.work_sessions %>");
 	
 	$("#new_work_session").hide();
 	$("#timer_controls").show();
 	$("#deleteform").html('<%= button_to "Delete", @work_session, method: :delete, class: "btn btn-danger timer-control" %>');
+
+
+  console.log("Desired time:" + '<%= @work_session.length %>')
 
 	startTimer();
 
@@ -55,12 +63,14 @@ function showSaveForm() {
 
 
 function tick() {  // make sure there aren't any race conditions here or w/ever
+console.log(total + " total / time elapsed: " + time)
   if (!paused) {
     time++;
     if (time == total) { // Done!
+      document.getElementById('buzz_audio').play();
       updateTimer();
       paused = true;
-      $("#timer").blink();
+      //$("#timer").blink();
       showSaveForm();
       pomodoros++;
 
