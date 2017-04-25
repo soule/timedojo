@@ -27,6 +27,8 @@ gem 'capistrano-rbenv'
 
 gem 'devise'
 
+gem "figaro"
+
 
 
 group :development, :test do

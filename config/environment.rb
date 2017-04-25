@@ -6,10 +6,10 @@ Rails.application.initialize!
 
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => 'soule',
-  :password => 'soule25-',
-  :domain => 'timedojo.com',
-  :address => 'smtp.sendgrid.net',
+  :user_name => ENV['mail_username'],
+  :password => ENV['mail_password'],
+  :domain => ENV['mail_domain'],
+  :address => ENV['mail_address'],
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
