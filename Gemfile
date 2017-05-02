@@ -29,6 +29,8 @@ gem 'devise'
 
 gem "figaro"
 
+gem 'mailgun-ruby', '~>1.1.4'
+
 
 
 group :development, :test do
