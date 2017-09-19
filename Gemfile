@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-ruby '2.4.0'
-gem 'rails', "5.0.1"
+ruby '2.4.1'
+gem 'rails', "5.0.5"
 gem 'bcrypt'
 gem 'sass-rails'
 gem 'uglifier'
@@ -18,20 +18,11 @@ gem 'chartkick'
 #gem 'dateslices'
 #gem "mail_view", "~> 2.0.4"
 
-gem 'capistrano'
-gem 'capistrano-rails'
-gem 'capistrano-passenger'
-
-# Add this if you're using rbenv
-gem 'capistrano-rbenv'
-
 gem 'devise'
 
 gem "figaro"
 
 gem 'mailgun-ruby', '~>1.1.4'
-
-
 
 group :development, :test do
   gem 'sqlite3'
@@ -46,3 +37,9 @@ group :production do
 	gem 'rails_12factor'
 	gem 'groupdate'
 end
+
+
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1'

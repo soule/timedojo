@@ -80,4 +80,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => "timedojo.com" }
 
   config.middleware.use Rack::Deflater
+
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+         api_key: ENV['mailgun_key'],
+         domain: ENV['mailgun_domain']
+  }
 end
